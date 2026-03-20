@@ -104,6 +104,8 @@ Polar webhook URL (unchanged): `{BETTER_AUTH_URL}/api/auth/polar/webhooks`.
 | `pnpm dev` | Next.js dev server |
 | `pnpm build` / `pnpm start` | Production build & run |
 | `pnpm lint` | ESLint |
+| `pnpm test` | Vitest (unit tests) |
+| `pnpm check` | Typecheck + lint + tests (same gates as CI except `build`) |
 | `pnpm exec prisma …` | Prisma CLI (uses [prisma.config.ts](prisma.config.ts) for `DIRECT_URL` / fallbacks) |
 
 ## Project layout
@@ -116,7 +118,7 @@ Polar webhook URL (unchanged): `{BETTER_AUTH_URL}/api/auth/polar/webhooks`.
 
 ## Docs for agents
 
-See [AGENTS.md](AGENTS.md) for package-manager rules and Next.js version notes.
+See [AGENTS.md](AGENTS.md) for package-manager rules and Next.js version notes. Contributing: [CONTRIBUTING.md](CONTRIBUTING.md). Deploy: [docs/DEPLOY.md](docs/DEPLOY.md).
 
 ## License
 

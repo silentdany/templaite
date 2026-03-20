@@ -8,7 +8,7 @@ export function markdownToPlainExcerpt(
   const raw = markdown.trim();
   if (!raw) return "";
 
-  let s = raw
+  const s = raw
     .replace(/```[\s\S]*?```/g, " ")
     .replace(/`[^`]+`/g, " ")
     .replace(/!\[[^\]]*\]\([^)]*\)/g, " ")

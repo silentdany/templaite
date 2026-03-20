@@ -6,7 +6,7 @@ This file is a **short index**. Stack details, commands, and env templates are i
 
 - **pnpm only** (`pnpm install`, `pnpm add`, `pnpm dlx`). Never `npm` or `yarn` (enforced by `packageManager` and `.npmrc`).
 - **Next.js 16**: this is *not* the Next.js from most training data. Before using App Router APIs or file conventions, read the relevant guide under `node_modules/next/dist/docs/` and heed deprecations (same warning as in AGENTS).
-- After substantive edits: `pnpm exec tsc --noEmit` and `pnpm lint`.
+- After substantive edits: **`pnpm check`** (TypeScript + ESLint + Vitest), or at minimum `pnpm exec tsc --noEmit` and `pnpm lint`. CI also runs `pnpm build`.
 
 ## Where else to look
 
@@ -17,6 +17,7 @@ This file is a **short index**. Stack details, commands, and env templates are i
 | **Cursor** project rules (RSC, UI, API, AI chat) | [.cursor/rules/](./.cursor/rules/) — open the rule that matches the files you are editing |
 | Repeatable workflows (shadcn add, migrate, feature scaffold) | [.cursor/skills/](./.cursor/skills/) — each folder has a `SKILL.md` |
 | Env variable names | [.env.example](./.env.example) |
+| Contributing & PR checklist | [CONTRIBUTING.md](./CONTRIBUTING.md), [.github/PULL_REQUEST_TEMPLATE.md](./.github/PULL_REQUEST_TEMPLATE.md) |
 
 ## Do not duplicate
 

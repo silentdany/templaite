@@ -28,13 +28,25 @@ pnpm exec prisma migrate dev   # requires DIRECT_URL / reachable DB
 pnpm dev
 ```
 
+## Definition of done (before merge)
+
+- Run **`pnpm check`** (runs `tsc --noEmit`, `eslint`, and `vitest run`). CI on GitHub runs the same gates plus `pnpm build`.
+- If you introduce new **environment variables**, update [`.env.example`](./.env.example) and mention them in the PR description.
+- If you add a **new canonical area** (e.g. a major integration or route group), add a row to the table in [`docs/ARCHITECTURE.md`](./docs/ARCHITECTURE.md).
+
+## Secrets and sensitive config
+
+- **Never commit** `.env`, real API keys, or production database URLs. Use [`.env.example`](./.env.example) with placeholders only.
+- Keep secrets **server-side**: tokens and DB credentials belong in server modules and Route Handlers; use `NEXT_PUBLIC_*` only when a value must be available in the browser.
+- **Do not** log tokens, session secrets, or passwords in application code or user-facing errors.
+
 ## Better Auth / Prisma schema
 
 After changing Better Auth plugins or options, re-run `better-auth generate` and create a migration. **Do not manually edit** generated auth tables in `schema.prisma` — let the CLI merge changes.
 
 ## Env templates
 
-See `.env.example` for `DATABASE_URL`, `DIRECT_URL`, `BETTER_AUTH_*`, optional `GOOGLE_CLIENT_ID` / `GOOGLE_CLIENT_SECRET`, optional `RESEND_API_KEY` / `EMAIL_FROM`, Polar, AI chat (`AI_GATEWAY_API_KEY` and/or `OPENAI_API_KEY`), optional Notion blog (`NOTION_TOKEN`, `NOTION_BLOG_DATABASE_ID` — see [docs/BLOG_NOTION.md](./docs/BLOG_NOTION.md)). Set **`NEXT_PUBLIC_APP_URL`** in production for correct sitemap/OG/canonical URLs ([docs/SEO.md](./docs/SEO.md)).
+See `.env.example` for `DATABASE_URL`, `DIRECT_URL`, `BETTER_AUTH_*`, optional `GOOGLE_CLIENT_ID` / `GOOGLE_CLIENT_SECRET`, optional `RESEND_API_KEY` / `EMAIL_FROM`, Polar, AI chat (`AI_GATEWAY_API_KEY` and/or `OPENAI_API_KEY`), optional Notion blog (`NOTION_TOKEN`, `NOTION_BLOG_DATABASE_ID` — see [docs/BLOG_NOTION.md](./docs/BLOG_NOTION.md)). Set **`NEXT_PUBLIC_APP_URL`** in production for correct sitemap/OG/canonical URLs ([docs/SEO.md](./docs/SEO.md)). Production deployment steps: [docs/DEPLOY.md](./docs/DEPLOY.md).
 
 ## AI assistants (Cursor & Claude)
 
@@ -42,3 +54,4 @@ See `.env.example` for `DATABASE_URL`, `DIRECT_URL`, `BETTER_AUTH_*`, optional `
 - **Cursor**: project rules in [`.cursor/rules/`](./.cursor/rules/) (`.mdc` files; always-apply + file-scoped).
 - **Workflow skills**: [`.cursor/skills/`](./.cursor/skills/) — each subfolder has a `SKILL.md` (e.g. shadcn add, Prisma + Better Auth migrate, app feature scaffold).
 - **Architecture map**: [`docs/ARCHITECTURE.md`](./docs/ARCHITECTURE.md) — middleware, route groups, canonical file table.
+- **CI**: [`.github/workflows/ci.yml`](./.github/workflows/ci.yml) — runs on pushes and PRs to `main` (typecheck, lint, tests, production build).
