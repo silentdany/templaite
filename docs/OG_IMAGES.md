@@ -12,12 +12,13 @@
 
 ## Segment examples
 
-- **Blog**: [`src/app/blog/opengraph-image.tsx`](../src/app/blog/opengraph-image.tsx) — copy this pattern for `/blog/[slug]/opengraph-image.tsx`.
+- **Blog (index)**: [`src/app/blog/opengraph-image.tsx`](../src/app/blog/opengraph-image.tsx) / [`twitter-image.tsx`](../src/app/blog/twitter-image.tsx).
+- **Blog (post)**: [`src/app/blog/[slug]/opengraph-image.tsx`](../src/app/blog/[slug]/opengraph-image.tsx) / [`twitter-image.tsx`](../src/app/blog/[slug]/twitter-image.tsx) — post title from Notion. **Do not** add `generateImageMetadata` with a single `id` unless you also reference `/blog/[slug]/opengraph-image/{id}` in metadata; otherwise the share URL stays `/blog/[slug]/opengraph-image`.
 - **Use cases**: [`src/app/use-cases/opengraph-image.tsx`](../src/app/use-cases/opengraph-image.tsx)
 
 ## Dynamic route (e.g. blog post)
 
-Create `app/blog/[slug]/opengraph-image.tsx`:
+`app/blog/[slug]/opengraph-image.tsx` is implemented; for other segments, use the same pattern:
 
 ```tsx
 import { createOgImageResponse } from "@/lib/og";

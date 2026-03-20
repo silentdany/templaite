@@ -34,7 +34,7 @@ After changing Better Auth plugins or options, re-run `better-auth generate` and
 
 ## Env templates
 
-See `.env.example` for `DATABASE_URL`, `DIRECT_URL`, `BETTER_AUTH_*`, optional `GOOGLE_CLIENT_ID` / `GOOGLE_CLIENT_SECRET`, optional `RESEND_API_KEY` / `EMAIL_FROM`, Polar, and AI chat (`AI_GATEWAY_API_KEY` and/or `OPENAI_API_KEY`).
+See `.env.example` for `DATABASE_URL`, `DIRECT_URL`, `BETTER_AUTH_*`, optional `GOOGLE_CLIENT_ID` / `GOOGLE_CLIENT_SECRET`, optional `RESEND_API_KEY` / `EMAIL_FROM`, Polar, AI chat (`AI_GATEWAY_API_KEY` and/or `OPENAI_API_KEY`), and optional Notion blog (`NOTION_TOKEN`, `NOTION_BLOG_DATABASE_ID` — see [docs/BLOG_NOTION.md](./docs/BLOG_NOTION.md)).
 
 ## AI assistants (Cursor & Claude)
 
