@@ -50,6 +50,7 @@ flowchart TD
 | **AI HTTP** | [src/app/api/chat/route.ts](../src/app/api/chat/route.ts) |
 | **Bootstrap flags** | [src/lib/bootstrap-status.ts](../src/lib/bootstrap-status.ts), [src/app/api/bootstrap/status/route.ts](../src/app/api/bootstrap/status/route.ts) |
 | **Notion blog** | [src/lib/notion/](../src/lib/notion/), [docs/BLOG_NOTION.md](./BLOG_NOTION.md) |
+| **Absolute URLs / SEO** | [src/lib/site-url.ts](../src/lib/site-url.ts) (`absoluteUrl`), [src/app/sitemap.ts](../src/app/sitemap.ts), [src/app/robots.ts](../src/app/robots.ts) |
 
 ## AI assistant layout (repo)
 
