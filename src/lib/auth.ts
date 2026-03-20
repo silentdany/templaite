@@ -3,14 +3,22 @@ import { Polar } from "@polar-sh/sdk";
 import { betterAuth } from "better-auth";
 import { prismaAdapter } from "@better-auth/prisma-adapter";
 import { nextCookies } from "better-auth/next-js";
+import { PHASE_PRODUCTION_BUILD } from "next/constants";
+import { isResendConfigured, queueResendEmail } from "./email/resend";
 import { prisma } from "./prisma";
 
 function getAuthSecret(): string {
   const secret = process.env.BETTER_AUTH_SECRET;
   if (secret) return secret;
-  if (process.env.NODE_ENV === "production") {
+
+  const isProdBuild =
+    process.env.NODE_ENV === "production" &&
+    process.env.NEXT_PHASE === PHASE_PRODUCTION_BUILD;
+
+  if (process.env.NODE_ENV === "production" && !isProdBuild) {
     throw new Error("BETTER_AUTH_SECRET is required in production.");
   }
+
   return "dev-insecure-secret-change-me";
 }
 
@@ -70,6 +78,11 @@ function buildPolarPlugin(): ReturnType<typeof polar>[] {
   ];
 }
 
+const googleClientId = process.env.GOOGLE_CLIENT_ID?.trim();
+const googleClientSecret = process.env.GOOGLE_CLIENT_SECRET?.trim();
+
+const resendEmail = isResendConfigured();
+
 export const auth = betterAuth({
   appName: "templaite",
   baseURL: baseUrl,
@@ -80,6 +93,45 @@ export const auth = betterAuth({
   }),
   emailAndPassword: {
     enabled: true,
+    ...(resendEmail
+      ? {
+          sendResetPassword: async ({ user, url }) => {
+            queueResendEmail({
+              to: user.email,
+              subject: "Reset your Templaite password",
+              text: `Reset your password: ${url}`,
+              html: `<p>Reset your password:</p><p><a href="${url}">${url}</a></p>`,
+            });
+          },
+        }
+      : {}),
   },
+  ...(resendEmail
+    ? {
+        emailVerification: {
+          sendOnSignUp: true,
+          autoSignInAfterVerification: true,
+          sendVerificationEmail: async ({ user, url }) => {
+            queueResendEmail({
+              to: user.email,
+              subject: "Verify your Templaite email",
+              text: `Verify your email: ${url}`,
+              html: `<p>Verify your email address:</p><p><a href="${url}">${url}</a></p>`,
+            });
+          },
+        },
+      }
+    : {}),
+  ...(googleClientId && googleClientSecret
+    ? {
+        socialProviders: {
+          google: {
+            clientId: googleClientId,
+            clientSecret: googleClientSecret,
+            prompt: "select_account",
+          },
+        },
+      }
+    : {}),
   plugins: [nextCookies(), ...buildPolarPlugin()],
 });
