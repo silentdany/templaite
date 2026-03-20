@@ -11,14 +11,18 @@ export interface BootstrapStatus {
   resendTestEndpointEnabled: boolean;
   polarServerEnabled: boolean;
   polarCheckoutReady: boolean;
+  /** Set only when the request includes a session; anonymous callers always see `null`. */
   polarCheckoutSlug: string | null;
+  /** Set only when the request includes a session; anonymous callers always see `null`. */
   polarCheckoutProductId: string | null;
   polarWebhookConfigured: boolean;
   checkoutSuccessPath: string;
 }
 
 export async function fetchBootstrapStatus(): Promise<BootstrapStatus> {
-  const response = await fetch("/api/bootstrap/status");
+  const response = await fetch("/api/bootstrap/status", {
+    credentials: "same-origin",
+  });
   if (!response.ok) {
     throw new Error(`Bootstrap status failed: ${response.status}`);
   }

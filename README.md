@@ -81,7 +81,7 @@ Prefer **[Vercel AI Gateway](https://vercel.com/docs/ai-gateway)**: set `AI_GATE
 
 Fallback: set `OPENAI_API_KEY` for direct OpenAI via `@ai-sdk/openai` (optional `OPENAI_CHAT_MODEL`, default `gpt-4o-mini`). If both are set, **the gateway key wins**.
 
-`GET /api/chat` returns `{ chatEnabled, aiProvider: "gateway" | "openai" | "none" }` without revealing secrets.
+`GET /api/chat` returns `{ chatEnabled, aiProvider: "gateway" | "openai" | "none" }` without revealing secrets. **`POST /api/chat`** requires a signed-in session (same cookies as the app) and applies a per-user rate limit—unauthenticated callers get `401`.
 
 ### Bootstrap / Playground
 
@@ -93,7 +93,7 @@ After signing in, use these routes to exercise the stack:
 | `/account` | JSON session via `authClient.useSession()` |
 | `/billing` | Polar: checkout (slug / product id), customer portal, customer state, list endpoints |
 
-`GET /api/bootstrap/status` returns **non-secret** flags only (`chatEnabled`, `aiProvider`, Polar env readiness, etc.). When checkout is configured, it also returns **`polarCheckoutSlug`** and **`polarCheckoutProductId`** so the billing UI can call `checkout` without hardcoding—do not treat those as secrets, but remove or restrict this route if you dislike exposing product configuration publicly.
+`GET /api/bootstrap/status` returns **non-secret** flags (`chatEnabled`, `aiProvider`, Polar readiness booleans, etc.). **`polarCheckoutSlug`** and **`polarCheckoutProductId`** are included only when the request has a valid session cookie so anonymous visitors cannot scrape checkout identifiers; sign in to use Polar checkout from the billing page or marketing pricing (when logged in).
 
 Polar webhook URL (unchanged): `{BETTER_AUTH_URL}/api/auth/polar/webhooks`.
 

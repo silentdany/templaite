@@ -71,7 +71,7 @@ const plans = [
 export function PricingSection() {
   const { data: session } = authClient.useSession();
   const { data: status, isPending: statusLoading } = useQuery({
-    queryKey: ["bootstrap-status"],
+    queryKey: ["bootstrap-status", session?.user?.id ?? "anon"],
     queryFn: fetchBootstrapStatus,
   });
 

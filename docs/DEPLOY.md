@@ -73,6 +73,13 @@ Set `NOTION_TOKEN` and `NOTION_BLOG_DATABASE_ID`; share the database with your i
 - [ ] `/api/auth` routes respond (no 5xx from misconfigured `BETTER_AUTH_URL`)  
 - [ ] `/sitemap.xml` and `/robots.txt` show correct absolute URLs  
 - [ ] If Polar enabled: test checkout or portal once in sandbox/production as appropriate  
+- [ ] If AI chat is enabled: confirm `POST /api/chat` returns `401` without a session and streams when signed in  
+
+## 9. Security and dependencies
+
+- Run **`pnpm audit`** locally before releases; address or track critical/high findings.
+- **`POST /api/chat`** requires an authenticated session and uses per-user in-memory rate limiting in [`src/lib/chat-rate-limit.ts`](../src/lib/chat-rate-limit.ts). For multiple server instances, replace with a shared store (e.g. Redis / Upstash) so limits apply globally.
+- Response security headers (frame deny, nosniff, referrer policy, optional HSTS when `NEXT_PUBLIC_APP_URL` is `https`) are set in [`next.config.ts`](../next.config.ts).
 
 ## CI
 

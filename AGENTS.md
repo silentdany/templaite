@@ -40,6 +40,11 @@ pnpm dev
 - Keep secrets **server-side**: tokens and DB credentials belong in server modules and Route Handlers; use `NEXT_PUBLIC_*` only when a value must be available in the browser.
 - **Do not** log tokens, session secrets, or passwords in application code or user-facing errors.
 
+## Dependencies and supply chain
+
+- Run **`pnpm audit`** when upgrading dependencies or before a release; triage critical/high advisories (upgrade, patch, or document accepted risk). Reports often include **transitive dev-only** paths (e.g. Prisma CLI tooling); fix by upgrading the parent package when releases include patched subdependencies, or accept risk for tools not shipped to production.
+- **Dependabot** opens weekly npm update PRs via [`.github/dependabot.yml`](./.github/dependabot.yml); review changelog and run `pnpm check` before merging.
+
 ## Better Auth / Prisma schema
 
 After changing Better Auth plugins or options, re-run `better-auth generate` and create a migration. **Do not manually edit** generated auth tables in `schema.prisma` — let the CLI merge changes.
