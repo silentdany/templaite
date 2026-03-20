@@ -10,8 +10,8 @@ flowchart TD
     req[Request]
   end
 
-  subgraph edge [Next middleware]
-    mw[middleware.ts session cookie check]
+  subgraph edge [Next.js proxy]
+    mw[proxy.ts session cookie check]
   end
 
   subgraph appRouter [App Router src/app]
@@ -33,7 +33,7 @@ flowchart TD
   req --> appApi
 ```
 
-- **Protected UI** (`/dashboard`, `/chat`, `/playground`, `/account`, `/billing`): [src/middleware.ts](../src/middleware.ts) redirects to `/login` when the Better Auth session cookie is missing.
+- **Protected UI** (`/dashboard`, `/chat`, `/playground`, `/account`, `/billing`): [src/proxy.ts](../src/proxy.ts) redirects to `/login` when the Better Auth session cookie is missing (Next.js 16+ replaces the deprecated `middleware` convention).
 - **Auth HTTP**: all Better Auth routes go through [src/app/api/auth/[...all]/route.ts](../src/app/api/auth/[...all]/route.ts).
 
 ## Canonical files
@@ -42,7 +42,7 @@ flowchart TD
 |------|---------|
 | **Next.js root layout / providers** | [src/app/layout.tsx](../src/app/layout.tsx), [src/components/providers.tsx](../src/components/providers.tsx) |
 | **Global styles / tokens** | [src/app/globals.css](../src/app/globals.css), [components.json](../components.json) |
-| **Middleware** | [src/middleware.ts](../src/middleware.ts) |
+| **Proxy** (session gate) | [src/proxy.ts](../src/proxy.ts) |
 | **Database** | [src/lib/prisma.ts](../src/lib/prisma.ts), [prisma/schema.prisma](../prisma/schema.prisma), [prisma.config.ts](../prisma.config.ts) |
 | **Auth (server)** | [src/lib/auth.ts](../src/lib/auth.ts) |
 | **Auth (client)** | [src/lib/auth-client.ts](../src/lib/auth-client.ts) |
@@ -70,4 +70,4 @@ flowchart TD
 | `(auth)` | Login, signup, password flows |
 | `(app)` | Signed-in experience; most new product pages go here unless public |
 
-When adding a **new signed-in page**, if it should require authentication at the edge, update **both** `protectedPrefixes` and `config.matcher` in [middleware.ts](../src/middleware.ts).
+When adding a **new signed-in page**, if it should require authentication at the edge, update **both** `protectedPrefixes` and `config.matcher` in [proxy.ts](../src/proxy.ts).

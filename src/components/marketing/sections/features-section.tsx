@@ -37,7 +37,7 @@ const items = [
   {
     icon: LayoutDashboard,
     title: "App shell included",
-    body: "Marketing, auth, and signed-in route groups with middleware patterns you can copy for new areas.",
+    body: "Marketing, auth, and signed-in route groups with Next.js proxy patterns you can copy for new areas.",
   },
 ] as const;
 

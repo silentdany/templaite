@@ -58,5 +58,5 @@ See `.env.example` for `DATABASE_URL`, `DIRECT_URL`, `BETTER_AUTH_*`, optional `
 - **Claude Code**: start from root [`CLAUDE.md`](./CLAUDE.md) — indexes this file, Cursor rules, skills, and architecture map.
 - **Cursor**: project rules in [`.cursor/rules/`](./.cursor/rules/) (`.mdc` files; always-apply + file-scoped).
 - **Workflow skills**: [`.cursor/skills/`](./.cursor/skills/) — each subfolder has a `SKILL.md` (e.g. shadcn add, Prisma + Better Auth migrate, app feature scaffold).
-- **Architecture map**: [`docs/ARCHITECTURE.md`](./docs/ARCHITECTURE.md) — middleware, route groups, canonical file table.
+- **Architecture map**: [`docs/ARCHITECTURE.md`](./docs/ARCHITECTURE.md) — proxy (session gate), route groups, canonical file table.
 - **CI**: [`.github/workflows/ci.yml`](./.github/workflows/ci.yml) — runs on pushes and PRs to `main` (typecheck, lint, tests, production build).

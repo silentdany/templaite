@@ -114,7 +114,7 @@ Polar webhook URL (unchanged): `{BETTER_AUTH_URL}/api/auth/polar/webhooks`.
 - [src/lib/auth.ts](src/lib/auth.ts) — Better Auth server config (Polar optional).
 - [src/lib/auth-client.ts](src/lib/auth-client.ts) — Better Auth React client + `polarClient()`.
 - [src/app/api/auth/[...all]/route.ts](src/app/api/auth/[...all]/route.ts) — Auth HTTP handler.
-- Route groups: `(marketing)`, `(auth)`, `(app)`; middleware protects `/dashboard`, `/chat`, `/playground`, `/account`, and `/billing`.
+- Route groups: `(marketing)`, `(auth)`, `(app)`; [`src/proxy.ts`](src/proxy.ts) (Next.js 16 proxy) protects `/dashboard`, `/chat`, `/playground`, `/account`, and `/billing`.
 
 ## Docs for agents
 

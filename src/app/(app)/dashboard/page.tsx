@@ -14,7 +14,7 @@ export default function DashboardPage() {
       <div>
         <h1 className="text-2xl font-semibold tracking-tight">Dashboard</h1>
         <p className="text-muted-foreground text-sm">
-          You are signed in. Protected by middleware and Better Auth.
+          You are signed in. Protected by proxy (session cookie) and Better Auth.
         </p>
       </div>
       <div className="grid gap-4 max-w-md">

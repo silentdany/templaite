@@ -7,7 +7,7 @@ description: Scaffold a signed-in app feature—page under (app), optional API r
 
 ## Placement
 
-- **Pages (signed-in)**: under `src/app/(app)/` (same group as dashboard, chat, playground). If the route must require a session, add the path to [middleware.ts](../../../src/middleware.ts) `protectedPrefixes` + `matcher`.
+- **Pages (signed-in)**: under `src/app/(app)/` (same group as dashboard, chat, playground). If the route must require a session, add the path to [proxy.ts](../../../src/proxy.ts) `protectedPrefixes` + `matcher`.
 - **Public / marketing**: `src/app/(marketing)/`.
 - **Auth flows**: `src/app/(auth)/`.
 

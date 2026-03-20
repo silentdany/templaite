@@ -13,7 +13,7 @@ This file is a **short index**. Stack details, commands, and env templates are i
 | Need | Location |
 |------|----------|
 | Stack, Prisma, Better Auth, shadcn, AI chat overview | [AGENTS.md](./AGENTS.md) |
-| High-level map, middleware, canonical paths | [docs/ARCHITECTURE.md](./docs/ARCHITECTURE.md) |
+| High-level map, proxy / session gate, canonical paths | [docs/ARCHITECTURE.md](./docs/ARCHITECTURE.md) |
 | **Cursor** project rules (RSC, UI, API, AI chat) | [.cursor/rules/](./.cursor/rules/) — open the rule that matches the files you are editing |
 | Repeatable workflows (shadcn add, migrate, feature scaffold) | [.cursor/skills/](./.cursor/skills/) — each folder has a `SKILL.md` |
 | Env variable names | [.env.example](./.env.example) |
