@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { BrandWordmark } from "@/components/brand-wordmark";
+import { ThemeToggle } from "@/components/theme-toggle";
 import { Button } from "@/components/ui/button";
 
 const nav = [
@@ -27,7 +28,8 @@ export function MarketingHeader() {
             </a>
           ))}
         </nav>
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-1 sm:gap-2">
+          <ThemeToggle />
           <Button
             variant="ghost"
             size="sm"
