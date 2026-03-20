@@ -1,0 +1,15 @@
+---
+description: Next.js App Router—RSC first, client boundaries, route groups, middleware-protected paths
+globs:
+  - src/app/**/*.tsx
+  - src/app/**/*.ts
+alwaysApply: false
+---
+
+# App Router (`src/app`)
+
+- **Prefer RSC**: default to Server Components. Use `'use client'` only at **leaf** interactive components (forms, panels, menus, providers).
+- **Examples**: auth forms under `(auth)/`, chat UI [chat-panel.tsx](../../src/app/(app)/chat/chat-panel.tsx), [session-inspector.tsx](../../src/app/(app)/account/session-inspector.tsx), [providers.tsx](../../src/components/providers.tsx).
+- **Route groups**: `(marketing)`, `(auth)`, `(app)` — keep new pages in the appropriate group.
+- **Middleware**: session-gated paths are defined in [middleware.ts](../../src/middleware.ts) (`/dashboard`, `/chat`, `/playground`, `/account`, `/billing`). Add new protected app routes there when needed.
+- **API routes** outside `api/auth/*`: follow typed JSON + correct HTTP status; see [api-lib-prisma-auth.mdc](api-lib-prisma-auth.mdc).

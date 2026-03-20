@@ -1,0 +1,15 @@
+---
+description: API routes, src/lib, Prisma 7, Better Auth—patterns, migrations, no secret leakage
+globs:
+  - src/app/api/**/*
+  - src/lib/**/*
+  - prisma/**/*
+alwaysApply: false
+---
+
+# API, lib, Prisma, auth
+
+- **Prisma**: runtime client — [prisma.ts](../../src/lib/prisma.ts); CLI/migrations — [prisma.config.ts](../../prisma.config.ts), `DATABASE_URL` + `DIRECT_URL` per [AGENTS.md](../../AGENTS.md).
+- **Better Auth**: server config [auth.ts](../../src/lib/auth.ts), handler [route.ts](../../src/app/api/auth/[...all]/route.ts). After changing plugins/options: `pnpm exec better-auth generate --config src/lib/auth.ts -y --output prisma/schema.prisma` then migrate — **do not hand-edit** generated auth models in `schema.prisma`.
+- **Responses**: meaningful status codes, structured JSON errors where appropriate. Avoid exposing secrets or raw env (pattern: [bootstrap status route](../../src/app/api/bootstrap/status/route.ts)).
+- **New HTTP handlers**: reference [chat route](../../src/app/api/chat/route.ts) and [demo routes](../../src/app/api/demo/) for structure.

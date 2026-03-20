@@ -35,3 +35,10 @@ After changing Better Auth plugins or options, re-run `better-auth generate` and
 ## Env templates
 
 See `.env.example` for `DATABASE_URL`, `DIRECT_URL`, `BETTER_AUTH_*`, optional `GOOGLE_CLIENT_ID` / `GOOGLE_CLIENT_SECRET`, optional `RESEND_API_KEY` / `EMAIL_FROM`, Polar, and AI chat (`AI_GATEWAY_API_KEY` and/or `OPENAI_API_KEY`).
+
+## AI assistants (Cursor & Claude)
+
+- **Claude Code**: start from root [`CLAUDE.md`](./CLAUDE.md) — indexes this file, Cursor rules, skills, and architecture map.
+- **Cursor**: project rules in [`.cursor/rules/`](./.cursor/rules/) (`.mdc` files; always-apply + file-scoped).
+- **Workflow skills**: [`.cursor/skills/`](./.cursor/skills/) — each subfolder has a `SKILL.md` (e.g. shadcn add, Prisma + Better Auth migrate, app feature scaffold).
+- **Architecture map**: [`docs/ARCHITECTURE.md`](./docs/ARCHITECTURE.md) — middleware, route groups, canonical file table.

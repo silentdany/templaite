@@ -1,0 +1,12 @@
+---
+description: Templaite-wide invariants—pnpm, AGENTS.md as source of truth, Next.js 16 docs, verification commands
+alwaysApply: true
+---
+
+# Templaite core (always apply)
+
+- **Package manager**: use **pnpm only** (`pnpm install`, `pnpm add`, `pnpm dlx`). Never `npm` or `yarn`. See [AGENTS.md](../../AGENTS.md) and [package.json](../../package.json) `packageManager`.
+- **Stack index**: commands, Prisma/Better Auth workflow, and env templates live in [AGENTS.md](../../AGENTS.md). Do not contradict it without updating that file.
+- **Next.js 16**: training data may be wrong. Before using App Router / APIs, read the relevant guide under `node_modules/next/dist/docs/` and heed deprecations (same note as AGENTS “This is NOT the Next.js you know”).
+- **Verification** after substantive edits: `pnpm exec tsc --noEmit` and `pnpm lint`.
+- **Scoped rules**: for UI work see [ui-shadcn-tailwind.mdc](ui-shadcn-tailwind.mdc); for `src/app` routing see [next-app-router.mdc](next-app-router.mdc); for API/lib/Prisma see [api-lib-prisma-auth.mdc](api-lib-prisma-auth.mdc); for chat see [ai-chat-routes.mdc](ai-chat-routes.mdc).

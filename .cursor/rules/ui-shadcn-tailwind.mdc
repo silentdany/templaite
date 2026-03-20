@@ -1,0 +1,15 @@
+---
+description: shadcn base-nova, neutral tokens, Tailwind v4 via globals.css, UX and motion guardrails
+globs:
+  - src/components/**/*
+  - src/app/globals.css
+alwaysApply: false
+---
+
+# UI — shadcn + Tailwind
+
+- **Design tokens**: stay on **neutral** + **CSS variables** from [globals.css](../../src/app/globals.css). Extend tokens there instead of scattered hex values.
+- **Components**: [components.json](../../components.json) — style `base-nova`, shadcn/ui under `src/components/ui/`. Import via `@/components/ui/*` and `@/lib/utils` (`cn`).
+- **New primitives**: add with shadcn CLI — see [.cursor/skills/add-shadcn-component/SKILL.md](../skills/add-shadcn-component/SKILL.md).
+- **UX**: consistent spacing (`gap-*`, `p-*`), visible focus, loading/disabled on buttons and form submits, associate labels (see auth forms under `src/app/(auth)/`).
+- **Motion**: `motion` is available — use sparingly; prefer simple CSS transitions for hovers. Do not animate layout-affecting properties in ways that hurt CLS.

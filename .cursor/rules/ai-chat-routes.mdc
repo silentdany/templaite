@@ -1,0 +1,15 @@
+---
+description: AI chat—gateway vs OpenAI env resolution, API streaming, client chat panel boundaries
+globs:
+  - src/app/api/chat/**/*
+  - "src/app/(app)/chat/**/*.tsx"
+  - "src/app/(app)/chat/**/*.ts"
+  - src/lib/ai-chat-config.ts
+alwaysApply: false
+---
+
+# AI chat
+
+- **Config**: provider selection and env flags — [ai-chat-config.ts](../../src/lib/ai-chat-config.ts). Preserve **gateway-first** vs OpenAI fallback behavior; do not hardcode provider choice in one place only.
+- **Route**: streaming + model wiring — [route.ts](../../src/app/api/chat/route.ts).
+- **Client**: streaming UI and boundaries — [chat-panel.tsx](../../src/app/(app)/chat/chat-panel.tsx) and the `(app)/chat` page. Keep heavy client logic in the panel, not in the page shell, unless the page must be client for routing reasons.
