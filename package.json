@@ -14,7 +14,7 @@
     "check": "pnpm exec tsc --noEmit && pnpm lint && pnpm test"
   },
   "dependencies": {
-    "@ai-sdk/openai": "^3.0.41",
+    "@ai-sdk/openai": "^3.0.47",
     "@ai-sdk/react": "^3.0.118",
     "@base-ui/react": "^1.3.0",
     "@better-auth/prisma-adapter": "^1.5.5",
