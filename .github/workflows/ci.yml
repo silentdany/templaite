@@ -27,6 +27,31 @@ jobs:
       - name: Install
         run: pnpm install --frozen-lockfile
 
+      - name: Build create-templaite CLI
+        run: pnpm --filter create-templaite run build
+
+      - name: create-templaite unit tests
+        run: pnpm --filter create-templaite test
+
+      - name: Smoke create-templaite (full + minimal)
+        run: |
+          set -e
+          cd /tmp
+          rm -rf ct-ci && mkdir ct-ci && cd ct-ci
+          node "$GITHUB_WORKSPACE/packages/create-templaite/dist/index.js" --defaults ct-full --skip-install --from "$GITHUB_WORKSPACE"
+          node "$GITHUB_WORKSPACE/packages/create-templaite/dist/index.js" --defaults --minimal ct-min --skip-install --from "$GITHUB_WORKSPACE"
+          cd ct-full && pnpm install --no-frozen-lockfile
+          printf '%s\n' \
+            'NEXT_PUBLIC_APP_URL=http://localhost:3000' \
+            'DATABASE_URL=postgresql://ci:ci@127.0.0.1:5432/ci' \
+            'DIRECT_URL=postgresql://ci:ci@127.0.0.1:5432/ci' \
+            'BETTER_AUTH_SECRET=01234567890123456789012345678901' \
+            'BETTER_AUTH_URL=http://localhost:3000' > .env
+          pnpm exec tsc --noEmit
+          cd ../ct-min && pnpm install --no-frozen-lockfile
+          printf '%s\n' 'NEXT_PUBLIC_APP_URL=http://localhost:3000' > .env
+          pnpm exec tsc --noEmit
+
       - name: Prisma client
         run: pnpm exec prisma generate
 

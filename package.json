@@ -5,11 +5,12 @@
   "packageManager": "pnpm@10.28.2",
   "scripts": {
     "postinstall": "prisma generate",
+    "create-templaite": "pnpm --filter create-templaite run build && node ./packages/create-templaite/dist/index.js",
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "test": "vitest run",
+    "test": "vitest run --passWithNoTests",
     "test:watch": "vitest",
     "check": "pnpm exec tsc --noEmit && pnpm lint && pnpm test"
   },

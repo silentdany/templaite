@@ -53,6 +53,7 @@ flowchart TD
 | **Absolute URLs / SEO** | [src/lib/site-url.ts](../src/lib/site-url.ts) (`absoluteUrl`), [src/app/sitemap.ts](../src/app/sitemap.ts), [src/app/robots.ts](../src/app/robots.ts) |
 | **Deploy / prod env** | [docs/DEPLOY.md](./DEPLOY.md) |
 | **CI** | [.github/workflows/ci.yml](../.github/workflows/ci.yml) |
+| **Scaffold CLI** | [packages/create-templaite/](../packages/create-templaite/) (optional feature toggles; see [README](../packages/create-templaite/README.md)) |
 
 ## AI assistant layout (repo)
 

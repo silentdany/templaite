@@ -10,6 +10,7 @@ Use **pnpm only** (`pnpm install`, `pnpm add`, `pnpm dlx`, …). The repo declar
 
 ## Stack (this repo)
 
+- **create-templaite** (`packages/create-templaite`) — optional CLI to scaffold a new folder from this template with toggles (Polar, Resend, Google OAuth, AI chat, Notion blog) or a minimal marketing-only build. See [packages/create-templaite/README.md](./packages/create-templaite/README.md).
 - **Next.js 16** App Router under `src/app/`
 - **Prisma 7** + Postgres: `prisma.config.ts` uses `DIRECT_URL` / `DATABASE_URL` for CLI; runtime uses `DATABASE_URL` + `@prisma/adapter-pg` in `src/lib/prisma.ts`
 - **Better Auth** + `@better-auth/prisma-adapter`: `src/lib/auth.ts`, `src/app/api/auth/[...all]/route.ts`

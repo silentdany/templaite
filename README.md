@@ -8,6 +8,18 @@ Open-source Next.js **App Router** starter: **pnpm**, **Prisma 7** (Postgres + d
 - [pnpm](https://pnpm.io/) (required; `packageManager` is pinned in `package.json`)
 - Postgres (e.g. Supabase): pooled URL for the app, direct URL for migrations
 
+## Scaffold with the CLI (optional)
+
+From a clone of this repo, build and run the local CLI to create a **new directory** with selected features (or a minimal marketing-only app):
+
+```bash
+pnpm install
+pnpm --filter create-templaite run build
+node ./packages/create-templaite/dist/index.js my-app
+```
+
+Non-interactive examples: `node ./packages/create-templaite/dist/index.js --defaults my-app --skip-install` (full features) or `--defaults --minimal my-app` (no auth/DB). See [packages/create-templaite/README.md](packages/create-templaite/README.md).
+
 ## Setup
 
 ```bash

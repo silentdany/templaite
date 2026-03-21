@@ -2,6 +2,8 @@
 
 Use this when shipping to production (e.g. **Vercel** + **Supabase** or any Postgres host). Copy values from [`.env.example`](../.env.example); never commit real secrets.
 
+If you used [create-templaite](../packages/create-templaite/README.md), your `.env.example` only lists variables for the features you selected; align production env vars with that file.
+
 ## 1. Database
 
 1. Create a Postgres instance and obtain:
